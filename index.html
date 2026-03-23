@@ -154,38 +154,46 @@
     <script>
         // 1. 데이터 정의 (보여지는 내용은 그대로 유지)
         const membersData = [
-            { name: "이윤하", icon: "sparkles", vivid: "#a100ff", bgPhoto: "yoonha.jpeg", label: "완벽주의 전략가", desc: "모든 일에 계획이 있어야 직성이 풀리며, 작은 디테일 하나 놓치지 않는 예리한 눈을 가졌습니다. 차가워 보이지만 팀원들을 뒤에서 가장 많이 챙기는 '츤데레' 스타일입니다.", path: "M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z" },
-            { name: "김예슬", icon: "smile", vivid: "#0077ff", bgPhoto: "yeseul.jpeg", label: "긍정 에너지 메이커", desc: "어떤 어려운 상황에서도 웃음을 잃지 않는 무한 긍정의 소유자입니다. 특유의 밝은 기운으로 팀의 사기를 북돋우며, 갈등을 부드럽게 해결하는 '중재자' 역할을 자처합니다.", path: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" },
-            { name: "김지은", icon: "palette", vivid: "#00e676", bgPhoto: "jieun.jpeg", label: "엉뚱한 아이디어 뱅크", desc: "생각의 틀을 깨는 독창적인 시각을 가진 아티스트입니다. 조용해 보이지만 가끔 던지는 한마디가 팀원들을 빵 터뜨리거나 프로젝트의 새로운 돌파구가 되기도 하는 '반전 매력'의 소유자입니다.", path: "M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9s1.5.67 1.5 1.5S7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 10 17.5 10s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" },
-            { name: "방상훈", icon: "shield", vivid: "#ff1744", bgPhoto: "sanghoon.jpeg", label: "묵직한 해결사", desc: "말보다는 행동으로 보여주는 타입입니다. 어려운 문제가 닥쳐도 당황하지 않고 묵묵히 자리를 지키며 해결책을 찾아내는 7조의 '든든한 기둥' 같은 존재입니다.", path: "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" },
-            { name: "최형우", icon: "zap", vivid: "#3d5afe", bgPhoto: "hyungwoo.jpeg", label: "열정적인 행동파", desc: "한번 꽂히면 끝장을 봐야 하는 불꽃 같은 열정을 가지고 있습니다. 빠른 판단력과 추진력으로 팀의 진행 속도를 한 단계 끌어올리는 '엔진' 역할을 수행합니다.", path: "M13 2L3 14h9l-1 8 10-12h-9l1-8z" }
+            { name: "이윤하", icon: "sparkles", vivid: "#a100ff", bgPhoto: "yoonha.jpeg", label: "완벽주의 전략가", desc: "모든 일에 계획이 있어야 직성이 풀리며, 작은 디테일 하나 놓치지 않는 예리한 눈을 가졌습니다. 차가워 보이지만 팀원들을 뒤에서 가장 많이 챙기는 '츤데레' 스타일입니다.", img: "yoonha.jpeg"},
+            { name: "김예슬", icon: "smile", vivid: "#0077ff", bgPhoto: "yeseul.jpeg", label: "긍정 에너지 메이커", desc: "어떤 어려운 상황에서도 웃음을 잃지 않는 무한 긍정의 소유자입니다. 특유의 밝은 기운으로 팀의 사기를 북돋우며, 갈등을 부드럽게 해결하는 '중재자' 역할을 자처합니다.", img: "yeseul.jpeg" },
+            { name: "김지은", icon: "palette", vivid: "#00e676", bgPhoto: "jieun.jpeg", label: "엉뚱한 아이디어 뱅크", desc: "생각의 틀을 깨는 독창적인 시각을 가진 아티스트입니다. 조용해 보이지만 가끔 던지는 한마디가 팀원들을 빵 터뜨리거나 프로젝트의 새로운 돌파구가 되기도 하는 '반전 매력'의 소유자입니다.", img: "jieun.jpeg"},
+            { name: "방상훈", icon: "shield", vivid: "#ff1744", bgPhoto: "sanghoon.jpeg", label: "묵직한 해결사", desc: "말보다는 행동으로 보여주는 타입입니다. 어려운 문제가 닥쳐도 당황하지 않고 묵묵히 자리를 지키며 해결책을 찾아내는 7조의 '든든한 기둥' 같은 존재입니다.", img: "sanghoon.jpeg" },
+            { name: "최형우", icon: "zap", vivid: "#3d5afe", bgPhoto: "hyungwoo.jpeg", label: "열정적인 행동파", desc: "한번 꽂히면 끝장을 봐야 하는 불꽃 같은 열정을 가지고 있습니다. 빠른 판단력과 추진력으로 팀의 진행 속도를 한 단계 끌어올리는 '엔진' 역할을 수행합니다.", img: "hyungwoo.jpeg" }
         ];
 
         // 2. 동적 렌더링 (비주얼 요소 100% 복구)
         const root = document.getElementById('members-root');
         membersData.forEach(m => {
-            root.innerHTML += `
-                <section class="member-section" data-bg-img="${m.bgPhoto}">
-                    <div class="sticky-content">
-                        <div class="card-container" onclick="this.classList.toggle('is-flipped')">
-                            <div class="card-face card-back"><div class="card-back-design"></div></div>
-                            <div class="card-face card-front">
-                                <div class="hologram-effect"></div>
-                                <div class="card-header">
-                                    <div class="card-name">${m.name}</div>
-                                    <div class="card-icon"><i data-lucide="${m.icon}"></i></div>
-                                </div>
-                                <div class="card-img-area" style="background:${m.vivid};"><svg viewBox="0 0 24 24"><path d="${m.path}"/></svg></div>
-                                <div class="ability-box">
-                                    <div class="ability-label" style="background:${m.vivid};">성격 // ${m.label}</div>
-                                    <p class="ability-desc">${m.desc}</p>
-                                </div>
-                            </div>
+            // 2. 동적 렌더링 부분 수정
+const root = document.getElementById('members-root');
+membersData.forEach(m => {
+    root.innerHTML += `
+        <section class="member-section" data-color="${m.bg}">
+            <div class="sticky-content">
+                <div class="card-container" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-face card-back"><div class="card-back-design"></div></div>
+                    
+                    <div class="card-face card-front">
+                        <div class="hologram-effect"></div>
+                        <div class="card-header">
+                            <div class="card-name">${m.name}</div>
+                            <div class="card-icon"><i data-lucide="${m.icon}"></i></div>
+                        </div>
+                        
+                        <div class="card-img-area" style="background:#fff; overflow:hidden;">
+                            <img src="${m.img}" alt="${m.name}" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+
+                        <div class="ability-box">
+                            <div class="ability-label" style="background:${m.vivid};">성격 // ${m.label}</div>
+                            <p class="ability-desc">${m.desc}</p>
                         </div>
                     </div>
-                </section>
-            `;
-        });
+                </div>
+            </div>
+        </section>
+    `;
+});        });
         lucide.createIcons();
 
         // 3. 커서 및 모달 (그대로 유지)
