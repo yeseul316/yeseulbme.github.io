@@ -124,7 +124,7 @@
     <section class="group-photo-section">
         <div style="font-size: 3rem; font-weight: 950; margin-bottom: 10px; text-transform: uppercase;">TEAM 7 COLLECTIVE</div>
         <div style="font-size: 1.2rem; font-weight: 700; color: #666; letter-spacing: 0.2em; margin-bottom: 30px;">UNIQUE PERSONALITIES, ONE POWERFUL TEAM</div>
-        <div class="group-photo-container"><img src="unnamed.jpg" alt="7조"></div>
+        <div class="group-photo-container"><img src="IMG_1892.JPG"></div>
         <div style="font-weight: 800;">AI Engineering Class of 2026 // Persona Edition</div>
     </section>
 
