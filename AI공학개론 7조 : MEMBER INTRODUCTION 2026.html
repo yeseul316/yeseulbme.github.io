@@ -7,15 +7,16 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            —bg: #ffffff;
-            —fg: #111111;
-            —accent-red: #ff1744;
-            —pack-blue: #2a3eb1;
-            —retro-yellow: #ffcb05;
+            /* 하이픈(--) 기호 수정 완료 */
+            --bg: #ffffff;
+            --fg: #111111;
+            --accent-red: #ff1744;
+            --pack-blue: #2a3eb1;
+            --retro-yellow: #ffcb05;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; cursor: none !important; }
-        body { background-color: #ffffff; color: var(—fg); overflow-x: hidden; transition: background-color 0.5s ease; }
+        body { background-color: var(--bg); color: var(--fg); overflow-x: hidden; transition: background-color 0.5s ease; }
 
         /* — Custom PokeBall Cursor — */
         #custom-cursor { position: fixed; top: 0; left: 0; width: 32px; height: 32px; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s ease-out; }
@@ -24,7 +25,7 @@
             border: 2px solid #000; border-radius: 50%; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .pokeball-cursor::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: #000; transform: translateY(-50%); }
-        .pokeball-cursor::after { content: ''; position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; background: #fff; border: 2px solid #000; border-radius: 50%; transform: translate(-50%, -50%); }
+        .pokeball-cursor::after { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 10px; background: #fff; border: 2px solid #000; border-radius: 50%; transform: translate(-50%, -50%); }
         body.clicking #custom-cursor { transform: translate(-50%, -50%) scale(0.8) rotate(20deg); }
 
         /* — Sections — */
@@ -35,7 +36,9 @@
         .unboxing-section { height: 500vh; background: #000; position: relative; }
         .unboxing-sticky { position: sticky; top: 0; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
         .pack-wrapper { position: relative; width: 320px; height: 460px; z-index: 10; display: flex; justify-content: center; align-items: center; }
-        .pack-half { position: absolute; width: 100%; background: var(—pack-blue); border: 6px solid #fff; overflow: hidden; display: flex; justify-content: center; }
+        
+        /* 배경색 변수 참조 수정 */
+        .pack-half { position: absolute; width: 100%; background: var(--pack-blue); border: 6px solid #fff; overflow: hidden; display: flex; justify-content: center; }
         
         .pack-top { 
             top: 0; height: 85px; border-bottom: none; border-radius: 12px 12px 0 0; z-index: 12;
@@ -47,7 +50,7 @@
             clip-path: polygon(0% 2.5%, 5% 0%, 10% 2.5%, 15% 0%, 20% 2.5%, 25% 0%, 30% 2.5%, 35% 0%, 40% 2.5%, 45% 0%, 50% 2.5%, 55% 0%, 60% 2.5%, 65% 0%, 70% 2.5%, 75% 0%, 80% 2.5%, 85% 0%, 90% 2.5%, 95% 0%, 100% 2.5%, 100% 100%, 0% 100%);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .pack-logo { font-size: 2.5rem; font-weight: 950; color: var(—retro-yellow); text-shadow: 4px 4px 0 #3b4cca; transform: rotate(-5deg); }
+        .pack-logo { font-size: 2.5rem; font-weight: 950; color: var(--retro-yellow); text-shadow: 4px 4px 0 #3b4cca; transform: rotate(-5deg); }
         .scissors { position: absolute; left: 0; top: calc(50% - 150px); width: 80px; height: 80px; z-index: 50; opacity: 0; transform: translate(-50%, -50%); }
         .card-preview-pile { position: absolute; width: 280px; height: 400px; background: #fff; border-radius: 10px; border: 4px solid #111; top: 40px; z-index: 5; opacity: 0; visibility: hidden; }
 
@@ -59,40 +62,21 @@
         .card-container.is-flipped { transform: rotateY(180deg); }
         
         .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border: 14px solid #111; border-radius: 15px; box-shadow: 20px 20px 0px rgba(0,0,0,0.1); overflow: hidden; }
-        
-        /* 카드 뒷면 복구 */
-        .card-back { background: var(—pack-blue); display: flex; justify-content: center; align-items: center; }
+        .card-back { background: var(--pack-blue); display: flex; justify-content: center; align-items: center; }
         .card-back-design { width: 150px; height: 150px; border: 8px solid #fff; border-radius: 50%; position: relative; background: linear-gradient(to bottom, #ff1744 50%, #fff 50%); }
         .card-back-design::after { content: 'TEAM'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border: 6px solid #111; border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 0.8rem; }
 
-        /* 카드 앞면 복구 */
         .card-front { background: #fff; padding: 24px; transform: rotateY(180deg); display: flex; flex-direction: column; }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 4px solid #111; padding-bottom: 8px; }
         .card-name { font-size: 2rem; font-weight: 900; }
         
-        /* —————————— [수정 3: 사진 스타일 추가] —————————— */
-        .card-img-area { 
-            width: 100%; aspect-ratio: 1.5 / 1; 
-            border: 4px solid #111; margin-bottom: 20px; 
-            overflow: hidden; /* 영역 밖 사진 숨김 */
-            display: flex; justify-content: center; align-items: center; 
-        }
-        .member-photo {
-            width: 100%; height: 100%;
-            object-fit: cover; /* 사진 비율 유지하며 꽉 채움 */
-        }
-        /* ————————————————————————————————————————— */
+        .card-img-area { width: 100%; aspect-ratio: 1.5 / 1; border: 4px solid #111; margin-bottom: 20px; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .member-photo { width: 100%; height: 100%; object-fit: cover; }
 
         .ability-label { font-weight: 900; color: #fff; display: inline-block; padding: 2px 8px; margin-bottom: 5px; border-radius: 4px; }
         .ability-desc { font-weight: 600; font-size: 0.95rem; line-height: 1.4; color: #333; }
         .hologram-effect { position: absolute; inset: 0; background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.6) 50%, transparent 80%); background-size: 200% 200%; animation: moveHolo 3s infinite linear; pointer-events: none; mix-blend-mode: overlay; }
         @keyframes moveHolo { 0% { background-position: -200% 0%; } 100% { background-position: 200% 0%; } }
-
-        /* — Other UI — */
-        .group-photo-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff; padding: 40px; text-align: center; }
-        .group-photo-container { width: 90%; max-width: 800px; border: 15px solid #111; margin-bottom: 30px; box-shadow: 30px 30px 0px rgba(0,0,0,0.05); overflow: hidden; }
-        .group-photo-container img { width: 100%; display: block; transition: 0.5s; }
-        .group-photo-container:hover img { transform: scale(1.03); }
 
         footer { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; background: #000; color: #fff; text-align: center; }
         .footer-bg-image { position: absolute; inset: 0; background: url('unnamed.jpg') center/cover; filter: brightness(0.4); z-index: 1; }
@@ -105,7 +89,6 @@
     </style>
 </head>
 <body>
-
     <div id="custom-cursor"><div class="pokeball-cursor"></div></div>
 
     <section class="hero">
@@ -135,7 +118,7 @@
     <section class="group-photo-section">
         <div style="font-size: 3rem; font-weight: 950; margin-bottom: 10px; text-transform: uppercase;">TEAM 7 COLLECTIVE</div>
         <div style="font-size: 1.2rem; font-weight: 700; color: #666; letter-spacing: 0.2em; margin-bottom: 30px;">UNIQUE PERSONALITIES, ONE POWERFUL TEAM</div>
-        <div class="group-photo-container"><img src="image\eks.png" alt="7조"></div>
+        <div class="group-photo-container"><img src="image/eks.png" alt="7조"></div>
         <div style="font-weight: 800;">AI Engineering Class of 2026 // Persona Edition</div>
     </section>
 
@@ -157,8 +140,6 @@
     </div>
 
     <script>
-        // 1. 데이터 정의 (보여지는 내용은 그대로 유지)
-        // —————————— [수정 1: 사진 데이터 경로 추가 (path 삭제)] ——————————
         const membersData = [
             { name: "이윤하", icon: "sparkles", vivid: "#a100ff", bg: "#f8e9ff", label: "완벽주의 전략가", desc: "모든 일에 계획이 있어야 직성이 풀리며, 작은 디테일 하나 놓치지 않는 예리한 눈을 가졌습니다. 차가워 보이지만 팀원들을 뒤에서 가장 많이 챙기는 '츤데레' 스타일입니다.", image: "image/이윤하.jpg" },
             { name: "김예슬", icon: "smile", vivid: "#0077ff", bg: "#e5f1ff", label: "긍정 에너지 메이커", desc: "어떤 어려운 상황에서도 웃음을 잃지 않는 무한 긍정의 소유자입니다. 특유의 밝은 기운으로 팀의 사기를 북돋우며, 갈등을 부드럽게 해결하는 '중재자' 역할을 자처합니다.", image: "image/김예슬.jpg" },
@@ -166,9 +147,7 @@
             { name: "방상훈", icon: "shield", vivid: "#ff1744", bg: "#ffebee", label: "묵직한 해결사", desc: "말보다는 행동으로 보여주는 타입입니다. 어려운 문제가 닥쳐도 당황하지 않고 묵묵히 자리를 지키며 해결책을 찾아내는 7조의 '든든한 기둥' 같은 존재입니다.", image: "image/방상훈.jpg" },
             { name: "최형우", icon: "zap", vivid: "#3d5afe", bg: "#e8f0ff", label: "열정적인 행동파", desc: "한번 꽂히면 끝장을 봐야 하는 불꽃 같은 열정을 가지고 있습니다. 빠른 판단력과 추진력으로 팀의 진행 속도를 한 단계 끌어올리는 '엔진' 역할을 수행합니다.", image: "image/최형우.jpg" }
         ];
-        // —————————————————————————————————————————————————————————
 
-        // 2. 동적 렌더링 (비주얼 요소 100% 복구)
         const root = document.getElementById('members-root');
         membersData.forEach(m => {
             root.innerHTML += `
@@ -197,14 +176,12 @@
         });
         lucide.createIcons();
 
-        // 3. 커서 및 모달 (그대로 유지)
         const cursor = document.getElementById('custom-cursor');
         window.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
         window.addEventListener('mousedown', () => document.body.classList.add('clicking'));
         window.addEventListener('mouseup', () => document.body.classList.remove('clicking'));
         function toggleModal(show) { document.getElementById('love-modal').classList.toggle('active', show); }
 
-        // 4. 스크롤 애니메이션 (언박싱 효과 완벽 복구)
         let hasPopped = false;
         window.addEventListener('scroll', () => {
             const trigger = document.getElementById('unboxing-trigger');
